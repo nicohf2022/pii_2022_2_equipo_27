@@ -2,13 +2,16 @@ namespace Library
 {
     public class ContactInfo
     {
-        private string Email { get; set; }
-        private string Phone { get; set; }
+        public string Email { get; private set; }
+        public string Phone { get; private set; }
+        public Address Address { get; private set; }
+        
 
-        public ContactInfo(string email, string phone, Address address)
+        public ContactInfo(string phone, string email, Address address)
         {
-            Email = email;
-            Phone = phone;
+            this.Phone = phone;
+            this.Email = email;
+            this.Address = address;
         }
     }
 }

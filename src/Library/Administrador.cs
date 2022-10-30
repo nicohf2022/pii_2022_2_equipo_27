@@ -1,14 +1,12 @@
 namespace Library
 {
-    public class Administrador : IPersonalData
+    public class Administrador : User
     {
-        private Administrador(string Nickname, PersonalData AdminData)
+        private Administrador(string nickname)
+        : base(nickname)
         {
-            this.Nickname = Nickname;
-            this.AdminData = AdminData;
+
         }
-        private string Nickname { get; set; }
-        private PersonalData AdminData { get; set; }
 
         private void AddCategory(string categoryName)
         {
@@ -28,7 +26,7 @@ namespace Library
             servicios, avisando al oferente para que de esa forma, pueda
             evitar ofertas inadecudas.*/
         }
-        private Offer[] GerOfferByCategory(Category category)
+        private GenericList<Offer> GetOfferByCategory(Category category)
         {
             /*quiero buscar ofertas de trabajo, opcionalmente filtrando
             por categoría para que de esa forma, pueda contratar un servicio.*/
