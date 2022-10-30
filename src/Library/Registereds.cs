@@ -2,24 +2,28 @@ namespace Library
 {
     public class Registereds
     {
-        public GenericList<Employee> Employees = new GenericList<Employee>();
-        public GenericList<Employer> Employers = new GenericList<Employer>();
+        public static GenericList<Employee> Employees = new GenericList<Employee>();
+        public static GenericList<Employer> Employers = new GenericList<Employer>();
 
-        public void Register(Employee employee)
+        public static void Register(Employee employee)
         {
             Employees.Register(employee);
         }
-        public void Register(Employer employer)
+        public static void Register(Employer employer)
         {
             Employers.Register(employer);
         }
-        public void Unsubscribe(Employee employee)
+        public static void Unsubscribe(Employee employee)
         {
             Employees.Unsubscribe(employee);
         }
-        public void Unsubscribe(Employer employer)
+        public static void Unsubscribe(Employer employer)
         {
             Employers.Unsubscribe(employer);
+        }
+        public static Employer GetEmployerByIndex(int index)
+        {
+            return Employers.SearchByInt(index);
         }
     }
 }
