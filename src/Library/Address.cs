@@ -2,11 +2,11 @@ namespace Library
 {
     public class Address
     {
-        private string Street { get; set; }
-        private string City { get; set; }
-        private string State { get; set; }
-        private string Country { get; set; }
-        private string PostalCode { get; set; }
+        public string Street { get; private set; }
+        public string City { get; private set; }
+        public string State { get; private set; }
+        public string Country { get; private set; }
+        public string PostalCode { get; private set; }
 
         public Address(string street, string city, string state, string country, string postalcode)
         {

@@ -9,19 +9,20 @@ namespace Library
             Price = price;
             Category = category;
         }
-        private Category Category { get; set; }
-        private string Description { get; set; }
-        private int Price { get; set; }
-        private int OfferID { get; set; }
-        private Offer[] OffersList { get; set; }
-        public Offer[] GetOffersList()
+        public Category Category { get; private set; }
+        public string Description { get; private set; }
+        public int Price { get; private set; }
+        public int OfferID { get; private set; }
+        private GenericList<Category> CategoriesList = new GenericList<Category>();
+        public GenericList<Category> GetOffersList()
         {
-            //Devolver lista Offer[] de las Ofertas
+            return CategoriesList;
         }
-        public Offer[] Offer(string category, int intIn)
+        public Offer[] Offer(string category)
         {
-            //Devolver Offer por Int
+            //Devolver Offer por Categoría
         }
+        public 
         public int GetReputation(Offer offer)
         {
             //Devolver valor de reputación de la oferta

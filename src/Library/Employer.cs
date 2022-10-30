@@ -1,15 +1,13 @@
 namespace Library
 {
-    public class Employer : IUser
+    public class Employer : WorkUser
     {
-        private PersonalData EmployerPersonalData { get; set; }
-        private ContactInfo EmployerContactInfo { get; set; }
-
-        public Employer(PersonalData personalData, ContactInfo contactInfo)
+        public Employer(string nickname, PersonalData personalData, Address address)
+        : base(nickname, personalData, address)
         {
-            EmployerPersonalData = personalData;
-            EmployerContactInfo = contactInfo;
+
         }
+        
         private void ContactEmployee(ContactInfo employeeinfo)
         {
             // Contact employer

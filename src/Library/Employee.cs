@@ -1,15 +1,12 @@
 ﻿namespace Library;
-public class Employee : IUser
+public class Employee : WorkUser
 {
-    private PersonalData EmployeePersonalData { get; set; }
-    private ContactInfo EmployeeContactInfo { get; set; }
-    
-    public Employee(PersonalData personalData, ContactInfo contactInfo)
+    public Employee(string nickname, PersonalData personalData, Address address)
+    : base(nickname, personalData, address)
     {
-        EmployeePersonalData = personalData;
-        EmployeeContactInfo = contactInfo;
+        
     }
-    private void OfferService(Categories category, string description, int price)
+    private void OfferService(Category category, string description, int price)
     {
         // Offer service to customer
     }
