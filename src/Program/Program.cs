@@ -1,4 +1,4 @@
-﻿// See https://aka.ms/new-console-template for more information
-using System;
+﻿using System;
+using Library;
 
-Console.WriteLine("Hello, World!");
+Console.WriteLine(MessageGenerator.Login());
