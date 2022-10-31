@@ -2,24 +2,40 @@ namespace Library
 {
     public class Registereds
     {
-        public GenericList<Employee> Employees = new GenericList<Employee>();
-        public GenericList<Employer> Employers = new GenericList<Employer>();
+        /// <summary>
+        /// Creamos los objetos de la lista en Registereds porque es la clase
+        /// encargada de guardar los objetos de tipo Employee y Employers.
+        /// También, de acuerdo al principio SRP, separamos la creación del Singleton (GenericList).
+        /// </summary>
+        /// <typeparam name="Employee"></typeparam>
+        /// <returns></returns>
+        public static GenericList<Employee> Employees = new GenericList<Employee>();
+        public static GenericList<Employer> Employers = new GenericList<Employer>();
 
-        public void Register(Employee employee)
+        /// <summary>
+        /// Tenemos un Polimorfismo en las operaciones pues no es necesario separar el método.
+        /// Hacer una misma operación con dos ingresos distintos permite más fluidez.
+        /// </summary>
+        /// <param name="employee"></param>
+        public static void Register(Employee employee)
         {
             Employees.Add(employee);
         }
-        public void Register(Employer employer)
+        public static void Register(Employer employer)
         {
             Employers.Add(employer);
         }
-        public void Unsubscribe(Employee employee)
+        public static void Unsubscribe(Employee employee)
         {
             Employees.Remove(employee);
         }
-        public void Unsubscribe(Employer employer)
+        public static void Unsubscribe(Employer employer)
         {
             Employers.Remove(employer);
+        }
+        public static Employer GetEmployerByIndex(int index)
+        {
+            return Employers.SearchByInt(index);
         }
     }
 }
