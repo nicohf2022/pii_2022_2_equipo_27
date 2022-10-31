@@ -47,6 +47,7 @@ namespace Library
                 if (category1.Name == category)
                 {
                     category1.AddOffer(this);
+                    this.Category = category1;
                 }
                 else
                 {
