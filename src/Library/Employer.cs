@@ -8,10 +8,15 @@ namespace Library
 
         }
         
-        private void ContactEmployee(ContactInfo employeeinfo)
+        private void ContactEmployee(string employeenick, string message)
         {
-            // Contact employer
+            foreach (Employee employee in Registereds.Employees)
+            {
+                if (employee.NickName == employeenick)
+                {
+                    MessageSender.Send(employee, message);
+                }
+            }
         }
-        
     }
 }

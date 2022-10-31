@@ -139,5 +139,48 @@ public class Tests
     }
     public void Test9()
     {
+        var categorys = new CategoryCatalog();
+        var registereds = new Registereds();
+        var admin = new Administrador("eladmin");
+
+        string input = "algo";
+        MessageReciver.Recive(input);
+
+        input = "algo2";
+        MessageReciver.Recive(input);
+
+        input = "Calle falsa 321, Montevideo, Pozos, Uruguay, C1425BQO";
+        MessageReciver.Recive(input);
+
+        input = "Pedro, Soan, 095123123, Pedrinho777@gmail.com";
+        MessageReciver.Recive(input);
+
+        Address useraddress0 = new Address("Calle falsa 123", "Montevideo", "Pozos", "Uruguay", "C1425BQO");
+        PersonalData userdata0 = new PersonalData("Pedro", "Soan", "095123123", "Pedrinho777@gmail.com", useraddress0);
+        Employee employee0 = new Employee("Pedro", userdata0, useraddress0);
+
+        string input1 = "algo1";
+        MessageReciver.Recive(input1);
+
+        input = "algo2";
+        MessageReciver.Recive(input1);
+
+        input = "Calle falsa 555, Maldonado, PdE, Uruguay, 20000";
+        MessageReciver.Recive(input);
+
+        input = "Nestor, Lizboa, 091911505, Messi101@gmail.com";
+        MessageReciver.Recive(input);
+
+        Address useraddress1 = new Address("Calle falsa 123", "Montevideo", "Pozos", "Uruguay", "C1425BQO");
+        PersonalData userdata1 = new PersonalData("Pedro", "Soan", "095123123", "Pedrinho777@gmail.com", useraddress0);
+        Employee employer0 = new Employee("Pedro", userdata1, useraddress1);
+
+        registereds.Register(employee0);
+        registereds.Register(employer0);
+
+        employer0.ContactEmployee(employee0, "Hola, me gustaria contratar sus servicios");
+
+
+        
     }
 }
