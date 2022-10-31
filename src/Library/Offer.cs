@@ -41,6 +41,7 @@ namespace Library
             this.Description = description;
             this.Price = price;
             this.OfferOwner = employee;
+            
             foreach (Category category1 in CategoryCatalog.categories)
             {
                 if (category1.Name == category)

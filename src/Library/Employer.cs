@@ -8,6 +8,7 @@ namespace Library
 
         }
         
+
         /// <summary>
         /// Devuelve string con la información de contacto o con mensaje de error si no lo encuentra.
         /// </summary>
@@ -27,6 +28,5 @@ namespace Library
             }
             return "No hay ningun Empleado registrado con el Nickname ingresado";
         }
-        
     }
 }
