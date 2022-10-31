@@ -38,7 +38,7 @@ namespace Library
         public Offer(int offerID, string description, int price, string category, Employee employee)
         {
             OfferID = offerID;
-            Description = description;
+            Description = description + employee.NickName;
             Price = price;
             OfferOwner = employee;
             foreach (Category category1 in CategoryCatalog.categories)
