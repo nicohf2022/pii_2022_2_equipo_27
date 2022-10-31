@@ -6,22 +6,27 @@ namespace Library
         /// Singleton instance of the Offers class.
         /// </summary>
         /// <value></value>
-        public static List<Offer> offers
+        public static List<Offer> Offers
         {
             get
             {
-                if (offers == null)
+                if (Offers == null)
                 {
-                    offers = new List<Offer>();
+                    Offers = new List<Offer>();
                 }
 
-                return offers;
+                return Offers;
             }
             set
             {
-                offers = value;
             }
         }
+
+        public Category Category { get; private set; }
+        public string Description { get; private set; }
+        public int Price { get; private set; }
+        public int OfferID { get; private set; }
+        public Employee OfferOwner { get; private set; }
         
         /// <summary>
         /// Constructor of the Offer class. Si se crea una oferta, se agrega a la lista de ofertas.
@@ -30,11 +35,12 @@ namespace Library
         /// <param name="description"></param>
         /// <param name="price"></param>
         /// <param name="category"></param>
-        public Offer(int offerID, string description, int price, string category)
+        public Offer(int offerID, string description, int price, string category, Employee employee)
         {
             OfferID = offerID;
             Description = description;
             Price = price;
+            OfferOwner = employee;
             foreach (Category category1 in CategoryCatalog.categories)
             {
                 if (category1.Name == category)
@@ -46,13 +52,9 @@ namespace Library
                     Console.WriteLine("La categoría no existe");
                 }
             }
-            offers.Add(this);
+            Offers.Add(this);
         }
-        public Category Category { get; private set; }
-        public string Description { get; private set; }
-        public int Price { get; private set; }
-        public int OfferID { get; private set; }
-
+        
 
         /// <summary>
         ///  Method to add an offer to the list of offers.
@@ -60,7 +62,7 @@ namespace Library
         /// <param name="category"></param>
         public void GetOffers()
         {
-            foreach (Offer offer in offers)
+            foreach (Offer offer in Offers)
             {
                 Console.WriteLine(offer.Description);
             }
@@ -78,6 +80,6 @@ namespace Library
                 }
             }
         }
-        
+
     }
 }
