@@ -2,6 +2,6 @@ namespace Library
 {
     public class Category
     {
-        private List<Offer> Products { get; set; }
+        public List<Offer> Offers { get; private set; }
     }
 }
