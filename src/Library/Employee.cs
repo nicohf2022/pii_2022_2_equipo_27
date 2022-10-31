@@ -6,12 +6,28 @@ public class Employee : WorkUser
     {
         
     }
-    private void OfferService(Category category, string description, int price)
+    public void CreateOffer(int offerid, string description, int price, string category, Employee employee)
     {
-        // Offer service to customer
+        Offer offer = new Offer(offerid, description, price, category, this);
     }
-    private void ContactEmployer(ContactInfo employerinfo)
+
+    /// <summary>
+    /// Devuelve string con la información de contacto o con mensaje de error si no lo encuentra.
+    /// </summary>
+    /// <param name="Nickname"></param>
+    /// <returns></returns>
+    private string ContactEmployer(string Nickname)
     {
-        // Contact employer
+        Employer element;
+
+        for (int i = 0; i < Registereds.Employers.GetLength(); i++)
+        {
+            element = Registereds.Employers.GetByIndex(i);
+            if (element.NickName == Nickname)
+            {
+                return element.ContactInfo.GetContactInfo();
+            }
+        }
+        return "No hay ningun Empleador registrado con el Nickname ingresado";
     }
 }
