@@ -37,10 +37,10 @@ namespace Library
         /// <param name="category"></param>
         public Offer(int offerID, string description, int price, string category, Employee employee)
         {
-            OfferID = offerID;
-            Description = description;
-            Price = price;
-            OfferOwner = employee;
+            this.OfferID = offerID;
+            this.Description = description;
+            this.Price = price;
+            this.OfferOwner = employee;
             foreach (Category category1 in CategoryCatalog.categories)
             {
                 if (category1.Name == category)
