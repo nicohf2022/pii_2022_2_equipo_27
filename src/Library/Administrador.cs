@@ -40,12 +40,18 @@ namespace Library
             }
         }
 
-        public void GetOffers()
+        public string GetOffers()
         {
+            string offers = "";
+            if (Offer.Offers.Count == 1)
+            {
+                return Offer.Offers[0].Description;
+            }
             foreach (Offer offer in Offer.Offers)
             {
-                Console.WriteLine(offer.Description);
+               offers += offer.Description + ".\n";
             }
+            return offers;
         }
         public void GetOffersByCategory(string category)
         {
@@ -60,26 +66,47 @@ namespace Library
                 }
             }
         }
-        public void GetOffersByUbication(string city)
+        /// <summary>
+        /// method that returns the list of offers of an exact ubication (city)
+        /// </summary>
+        /// <param name="city"></param>
+        /// <returns>string that containg offers description of the ubication</returns>
+        public string GetOffersByUbication(string city)
         {
+            string offers = "";
+            if (Offer.Offers.Count == 1)
+            {
+                return Offer.Offers[0].Description;
+            }
             foreach (Offer offer in Offer.Offers)
             {
                 if (offer.OfferOwner.Address.City == city)
                 {
-                    Console.WriteLine(offer.Description);
+                    offers += offer.Description + ".\n";
                 }
             }
+            return offers;
         }
         /// <summary>
         /// Metodo para ordenar de forma descendente las ofertas por reputacion
         /// </summary>
-        public void GetOffersByReputation()
+        public string GetOffersByReputation()
         {
+            string offertxt = "";
             List<Offer> offers = Offer.Offers;
             foreach (Offer offer in Offer.Offers)
             {
                 offers.Sort((x, y) => y.OfferOwner.Reputation.CompareTo(x.OfferOwner.Reputation));
             }
+            if (offers.Count == 1)
+            {
+                return offers[0].Description;
+            }
+            foreach (Offer offer in offers)
+            {
+                offertxt += offer.Description + ".\n";
+            }
+            return offertxt;
         }
 
         private void CancelOffer(string descripcion, int offerID)
