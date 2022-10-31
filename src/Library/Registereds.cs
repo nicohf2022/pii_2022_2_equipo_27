@@ -19,19 +19,19 @@ namespace Library
         /// <param name="employee"></param>
         public static void Register(Employee employee)
         {
-            Employees.Register(employee);
+            Employees.Add(employee);
         }
         public static void Register(Employer employer)
         {
-            Employers.Register(employer);
+            Employers.Add(employer);
         }
         public static void Unsubscribe(Employee employee)
         {
-            Employees.Unsubscribe(employee);
+            Employees.Remove(employee);
         }
         public static void Unsubscribe(Employer employer)
         {
-            Employers.Unsubscribe(employer);
+            Employers.Remove(employer);
         }
         public static Employer GetEmployerByIndex(int index)
         {

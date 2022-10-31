@@ -9,7 +9,7 @@ namespace Library
     {   
         public string NickName { get; protected set; }
 //        public Rubro Rubro { get; set; }
-        public int Reputation { get; protected set; }
+        public int Reputation { get; set; }
 
         public User(string nickname)
         {

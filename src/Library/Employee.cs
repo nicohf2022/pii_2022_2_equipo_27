@@ -6,9 +6,9 @@ public class Employee : WorkUser
     {
         
     }
-    private void OfferService(Category category, string description, int price)
+    public void CreateOffer(int offerid, string description, int price, string category, Employee employee)
     {
-        // Offer service to customer
+        Offer offer = new Offer(offerid, description, price, category, this);
     }
     private void ContactEmployer(ContactInfo employerinfo)
     {
