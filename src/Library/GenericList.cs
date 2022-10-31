@@ -3,9 +3,7 @@ namespace Library
     public class GenericList<T>
     {
         //private List<T> Registereds { get; set; }
-        private static List<T> singleton{ get; set; }
-        
-        public static List<T> Singleton
+        public static List<T> singleton
         {
             get
             {
@@ -16,18 +14,17 @@ namespace Library
 
                 return singleton;
             }
+            set
+            {
+            }
         }
-        public void Register(T item)
+        public void Add(T item)
         {
-            Singleton.Add(item);
+            singleton.Add(item);
         }
-        public void Unsubscribe(T item)
+        public void Remove(T item)
         {
-            Singleton.Remove(item);
-        }
-        public T SearchByInt(int numero)
-        {
-            return Singleton[numero];
+            singleton.Remove(item);
         }
     }
 }

@@ -7,19 +7,19 @@ namespace Library
 
         public void Register(Employee employee)
         {
-            Employees.Register(employee);
+            Employees.Add(employee);
         }
         public void Register(Employer employer)
         {
-            Employers.Register(employer);
+            Employers.Add(employer);
         }
         public void Unsubscribe(Employee employee)
         {
-            Employees.Unsubscribe(employee);
+            Employees.Remove(employee);
         }
         public void Unsubscribe(Employer employer)
         {
-            Employers.Unsubscribe(employer);
+            Employers.Remove(employer);
         }
     }
 }

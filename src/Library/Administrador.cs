@@ -2,34 +2,51 @@ namespace Library
 {
     public class Administrador : User
     {
-        private Administrador(string nickname)
+        public Administrador(string nickname)
         : base(nickname)
         {
 
         }
 
-        private void AddCategory(string categoryName)
+
+        /// <summary>
+        /// Adds a category to the catalog.
+        /// </summary>
+        /// <param name="category"></param>
+        public void AddCategory(string category)
         {
-            /*Cómo administrador, quiero poder indicar categorías sobre
-            las cuales se realizarán las ofertas de servicios para que
-            de esa forma, pueda clasificarlos.*/
+            CategoryCatalog.categories.Add(new Category(category));
         }
-        private void RemoveCategory(string categoryName)
+
+
+        /// <summary>
+        ///  Removes a category from the catalog.
+        /// </summary>
+        /// <param name="category name"></param>
+        public void RemoveCategory(string categoryname)
         {
-            /*Cómo administrador, quiero poder indicar categorías sobre
-            las cuales se realizarán las ofertas de servicios para que
-            de esa forma, pueda clasificarlos.*/
+            int categoriesnumber = CategoryCatalog.categories.Count;
+
+            foreach (Category category in CategoryCatalog.categories)
+            {
+                if (category.Name == categoryname)
+                {
+                    CategoryCatalog.categories.Remove(category);
+                }
+            }
+            if (CategoryCatalog.categories.Count == categoriesnumber)
+            {
+                Console.WriteLine("La categoría no existe");
+            }
         }
+
+
+
         private void CancelOffer(string descripcion, int offerID)
         {
             /*Como administrador, quiero poder dar de baja ofertas de
             servicios, avisando al oferente para que de esa forma, pueda
             evitar ofertas inadecudas.*/
-        }
-        private GenericList<Offer> GetOfferByCategory(Category category)
-        {
-            /*quiero buscar ofertas de trabajo, opcionalmente filtrando
-            por categoría para que de esa forma, pueda contratar un servicio.*/
         }
     }
 }
