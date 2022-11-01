@@ -2,15 +2,31 @@ namespace Library
 {
     public class Employer : WorkUser
     {
-        public Employer(string nickname, PersonalData personalData, Address address)
-        : base(nickname, personalData, address)
+        public Employer(string nickname, PersonalData personalData)
+        : base(nickname, personalData)
         {
-
+            Registereds.Register(this);
         }
         
-        private void ContactEmployee(ContactInfo employeeinfo)
+
+        /// <summary>
+        /// Devuelve string con la información de contacto o con mensaje de error si no lo encuentra.
+        /// </summary>
+        /// <param name="Nickname"></param>
+        /// <returns></returns>
+        public string ContactEmployee(string Nickname)
         {
-            // Contact employer
+            Employee element;
+
+            for (int i = 0; i < Registereds.Employees.GetLength(); i++)
+            {
+                element = Registereds.Employees.GetByIndex(i);
+                if (element.NickName == Nickname)
+                {
+                    return element.ContactInfo.GetContactInfo();
+                }
+            }
+            return "No hay ningun Empleado registrado con el Nickname ingresado";
         }
     }
 }

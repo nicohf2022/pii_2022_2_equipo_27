@@ -6,7 +6,7 @@ namespace Library
         {
             Console.WriteLine("Hello, I am a chat bot.");
             string responseUser = Console.ReadLine();
-            Console.WriteLine("Are you an mployee  or an employer?.If you are an employer,enter 1.If you are an employee,enter 2.");
+            Console.WriteLine("Are you an eployee or an employer?. If you are an employer enter 1,If you are an employee,enter 2.");
             string responseUser1 = Console.ReadLine();
 
             if (responseUser1=="1")

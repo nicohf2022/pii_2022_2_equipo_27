@@ -1,10 +1,10 @@
+using System.Collections.Generic;
 namespace Library
 {
     public class GenericList<T>
     {
-        //private List<T> Registereds { get; set; }
-        private static List<T> singleton{ get; set; }
-        
+        public static List<T> singleton;
+
         public static List<T> Singleton
         {
             get
@@ -16,18 +16,25 @@ namespace Library
 
                 return singleton;
             }
+            set
+            {
+            }
         }
-        public void Register(T item)
+        public void Add(T item)
         {
-            Singleton.Add(item);
+            singleton.Add(item);
         }
-        public void Unsubscribe(T item)
+        public void Remove(T item)
         {
-            Singleton.Remove(item);
+            singleton.Remove(item);
         }
-        public T SearchByInt(int numero)
+        public T GetByIndex(int index)
         {
-            return Singleton[numero];
+            return singleton[index];
+        }
+        public int GetLength()
+        {
+            return singleton.Count();
         }
     }
 }

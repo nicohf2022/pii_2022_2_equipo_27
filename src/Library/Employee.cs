@@ -1,17 +1,19 @@
 ﻿namespace Library;
 public class Employee : WorkUser
 {
-    public Employee(string nickname, PersonalData personalData, Address address)
-    : base(nickname, personalData, address)
+    public ContactInfo ContactInfo { get; private set; }
+    public Address Address { get; private set; }
+
+    public Employee(string nickname, PersonalData personalData, ContactInfo contactInfo)
+    : base(nickname, personalData)
     {
-        
+        this.ContactInfo = contactInfo;
+        this.Address = contactInfo.Address;
+        Registereds.Register(this);
     }
-    private void OfferService(Category category, string description, int price)
+
+    public void CreateOffer(int offerid, string description, int price, string category, Employee employee)
     {
-        // Offer service to customer
-    }
-    private void ContactEmployer(ContactInfo employerinfo)
-    {
-        // Contact employer
+        Offer offer = new Offer(offerid, description, price, category, this);
     }
 }
