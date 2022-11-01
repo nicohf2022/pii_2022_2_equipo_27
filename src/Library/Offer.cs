@@ -51,7 +51,7 @@ namespace Library
                 }
                 else
                 {
-                    Console.WriteLine("La categoría no existe");
+                    Console.WriteLine("La categoría no existe.");
                 }
             }
             Offers.Add(this);

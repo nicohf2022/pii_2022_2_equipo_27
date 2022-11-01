@@ -5,7 +5,7 @@ namespace Library
         public Employer(string nickname, PersonalData personalData)
         : base(nickname, personalData)
         {
-
+            Registereds.Register(this);
         }
         
 

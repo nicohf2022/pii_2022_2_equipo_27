@@ -9,6 +9,7 @@ public class Employee : WorkUser
     {
         this.ContactInfo = contactInfo;
         this.Address = contactInfo.Address;
+        Registereds.Register(this);
     }
 
     public void CreateOffer(int offerid, string description, int price, string category, Employee employee)
