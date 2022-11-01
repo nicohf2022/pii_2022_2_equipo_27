@@ -16,11 +16,14 @@ public class Tests
     /// </summary>
     public void TestAddCategory()
     {
-        Administrador administrador = new Administrador("Admin1");
+        var categorys = new CategoryCatalog();
+        var registereds = new Registereds();
+        var admin = new Administrador("eladmin");
+
         string input = "Category";
         
-        administrador.AddCategory(input);
-        var resultList = CategoryCatalog.categories;
+        admin.AddCategory(input);
+        var resultList = CategoryCatalog.Instance;
 
         List<Category> expectedList = new List<Category>();
         Category category = new Category(input);
@@ -37,8 +40,11 @@ public class Tests
     /// </summary>
     public void TestRemoveOffer()
     {
-        Administrador administrador2 = new Administrador("Admin2");
-        administrador2.AddCategory("categoria");
+        var categorys = new CategoryCatalog();
+        var registereds = new Registereds();
+        var admin = new Administrador("eladmin");
+
+        admin.AddCategory("categoria");
 
         Address address = new Address("calle", "ciudad", "estado", "pais", "codigopostal");
         ContactInfo contactInfo = new ContactInfo("091234567", "email", address);
@@ -49,13 +55,13 @@ public class Tests
         Offer oferta2 = new Offer(2, "descripcion", 100, "categoria", employee);
         Offer oferta3 = new Offer(3, "descripcion", 100, "categoria", employee);
 
-        administrador2.CancelOffer("descripcion", 1);
+        admin.CancelOffer("descripcion", 1);
 
         List<Offer> expectedList = new List<Offer>();;
         expectedList.Add(oferta2);
         expectedList.Add(oferta3);
 
-        List<Offer> resultList = Offer.Offers;
+        List<Offer> resultList = Offer.Instance;
 
         Assert.That(resultList, Is.EqualTo(expectedList));
     }
@@ -134,7 +140,7 @@ public class Tests
         Employee employee0 = new Employee("Juan Pinturas", userdata0, usercontact0);
 
         employee0.CreateOffer(1, "Pintar la casa", 1000, "Pintura", employee0);
-        var result = Offer.Offers[0].Description;
+        var result = Offer.Instance[0].Description;
         var expected = "Pintar la casa";
         Assert.That(result, Is.EqualTo(expected));
     }

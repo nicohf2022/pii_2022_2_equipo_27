@@ -15,7 +15,7 @@ namespace Library
         /// <param name="category"></param>
         public void AddCategory(string category)
         {
-            CategoryCatalog.categories.Add(new Category(category));
+            CategoryCatalog.Instance.Add(new Category(category));
         }
 
 
@@ -25,16 +25,16 @@ namespace Library
         /// <param name="category name"></param>
         public void RemoveCategory(string categoryname)
         {
-            int categoriesnumber = CategoryCatalog.categories.Count;
+            int categoriesnumber = CategoryCatalog.Instance.Count;
 
-            foreach (Category category in CategoryCatalog.categories)
+            foreach (Category category in CategoryCatalog.Instance)
             {
                 if (category.Name == categoryname)
                 {
-                    CategoryCatalog.categories.Remove(category);
+                    CategoryCatalog.Instance.Remove(category);
                 }
             }
-            if (CategoryCatalog.categories.Count == categoriesnumber)
+            if (CategoryCatalog.Instance.Count == categoriesnumber)
             {
                 Console.WriteLine("La categoría no existe");
             }
@@ -43,11 +43,11 @@ namespace Library
         public string GetOffers()
         {
             string offers = "";
-            if (Offer.Offers.Count == 1)
+            if (Offer.Instance.Count == 1)
             {
-                return Offer.Offers[0].Description;
+                return Offer.Instance[0].Description;
             }
-            foreach (Offer offer in Offer.Offers)
+            foreach (Offer offer in Offer.Instance)
             {
                offers += offer.Description + ".\n";
             }
@@ -55,7 +55,7 @@ namespace Library
         }
         public void GetOffersByCategory(string category)
         {
-            foreach (Category category1 in CategoryCatalog.categories)
+            foreach (Category category1 in CategoryCatalog.Instance)
             {
                 if (category1.Name == category)
                 {
@@ -74,11 +74,11 @@ namespace Library
         public string GetOffersByUbication(string city)
         {
             string offers = "";
-            if (Offer.Offers.Count == 1)
+            if (Offer.Instance.Count == 1)
             {
-                return Offer.Offers[0].Description;
+                return Offer.Instance[0].Description;
             }
-            foreach (Offer offer in Offer.Offers)
+            foreach (Offer offer in Offer.Instance)
             {
                 if (offer.OfferOwner.Address.City == city)
                 {
@@ -93,8 +93,8 @@ namespace Library
         public string GetOffersByReputation()
         {
             string offertxt = "";
-            List<Offer> offers = Offer.Offers;
-            foreach (Offer offer in Offer.Offers)
+            List<Offer> offers = Offer.Instance;
+            foreach (Offer offer in Offer.Instance)
             {
                 offers.Sort((x, y) => y.OfferOwner.Reputation.CompareTo(x.OfferOwner.Reputation));
             }
@@ -111,15 +111,15 @@ namespace Library
 
         public void CancelOffer(string descripcion, int offerID)
         {
-            foreach (Offer offer in Offer.Offers)
+            foreach (Offer offer in Offer.Instance)
             {
                 if (offer.OfferID == offerID)
                 {
-                    Offer.Offers.Remove(offer);
+                    Offer.Instance.Remove(offer);
                     Console.WriteLine(descripcion);
                 }
             }
-            foreach(Category category in CategoryCatalog.categories)
+            foreach(Category category in CategoryCatalog.Instance)
             {
                 foreach(Offer offer in category.OffersInCategory)
                 {
