@@ -49,7 +49,7 @@ namespace Library
             }
             foreach (Offer offer in Offer.Instance)
             {
-               offers += offer.Description + ".\n";
+               offers += offer.Description;
             }
             return offers;
         }
@@ -82,7 +82,7 @@ namespace Library
             {
                 if (offer.OfferOwner.Address.City == city)
                 {
-                    offers += offer.Description + ".\n";
+                    offers += offer.Description;
                 }
             }
             return offers;
@@ -94,29 +94,37 @@ namespace Library
         {
             string offertxt = "";
             List<Offer> offers = Offer.Instance;
-            foreach (Offer offer in Offer.Instance)
-            {
-                offers.Sort((x, y) => y.OfferOwner.Reputation.CompareTo(x.OfferOwner.Reputation));
-            }
+            offers = offers.OrderByDescending(o => o.OfferOwner.Reputation).ToList();
             if (offers.Count == 1)
             {
                 return offers[0].Description;
             }
-            foreach (Offer offer in offers)
+            for(int i = 0; i < offers.Count; i++)
             {
-                offertxt += offer.Description + ".\n";
+                offertxt += offers[i].Description;
             }
             return offertxt;
         }
 
         public void CancelOffer(string descripcion, int offerID)
         {
-            foreach (Offer offer in Offer.Instance)
+            for(int i = 0; i < Offer.Instance.Count; i++)
             {
-                if (offer.OfferID == offerID)
+                if (Offer.Instance[i].OfferID == offerID)
                 {
-                    Offer.Instance.Remove(offer);
-                    Console.WriteLine(descripcion);
+                    Offer.Instance.Remove(Offer.Instance[i]);
+                    Console.WriteLine("La oferta se ha cancelado");
+                }
+            }
+            for(int i = 0; i < CategoryCatalog.Instance.Count; i++)
+            {
+                for(int j = 0; j < CategoryCatalog.Instance[i].OffersInCategory.Count; j++)
+                {
+                    if (CategoryCatalog.Instance[i].OffersInCategory[j].OfferID == offerID)
+                    {
+                        CategoryCatalog.Instance[i].OffersInCategory.Remove(CategoryCatalog.Instance[i].OffersInCategory[j]);
+                        Console.WriteLine("La oferta se ha cancelado");
+                    }
                 }
             }
             foreach(Category category in CategoryCatalog.Instance)

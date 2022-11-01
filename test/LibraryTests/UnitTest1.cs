@@ -26,8 +26,7 @@ public class Tests
         var resultList = CategoryCatalog.Instance;
 
         List<Category> expectedList = new List<Category>();
-        Category category = new Category(input);
-        expectedList.Add(category);
+        expectedList.Add(new Category(input));
 
         Assert.That(resultList, Is.EqualTo(expectedList));
     }
@@ -64,6 +63,8 @@ public class Tests
         List<Offer> resultList = Offer.Instance;
 
         Assert.That(resultList, Is.EqualTo(expectedList));
+        admin.CancelOffer("descripcion", 2);
+        admin.CancelOffer("descripcion", 3);
     }
 
     [Test]
@@ -143,6 +144,7 @@ public class Tests
         var result = Offer.Instance[0].Description;
         var expected = "Pintar la casa";
         Assert.That(result, Is.EqualTo(expected));
+        admin.CancelOffer("descripcion", 1);
     }
     
     [Test]
@@ -175,6 +177,7 @@ public class Tests
         var result = admin.GetOffers(); // "Pintar la casa"
         var expected = "Pintar la casa";
         Assert.That(result, Is.EqualTo(expected));
+        admin.CancelOffer("descripcion", 1);
     }
     
     [Test]
@@ -211,8 +214,10 @@ public class Tests
         employee1.CreateOffer(2, "Masaje descontracturante y saca nerviosidad.", 1000, "Pintura", employee1);
 
         var result = admin.GetOffersByUbication("Montevideo"); 
-        var expected = "Pintar la cucha";
+        var expected = "Masaje descontracturante y saca nerviosidad.";
         Assert.That(result, Is.EqualTo(expected));
+        admin.CancelOffer("descripcion", 1);
+        admin.CancelOffer("descripcion", 2);
     }
     
     [Test]
@@ -244,14 +249,16 @@ public class Tests
         PersonalData userdata1 = new PersonalData("Pedro", "Sanchez");
         ContactInfo usercontact1 = new ContactInfo("099012021", "goku999@gmail.com", useraddress1);
         Employee employee1 = new Employee("Doctor nervios", userdata1, usercontact1);
+        employee1.Reputation = 5;
 
         employee0.CreateOffer(1, "Pintar la cucha", 1000, "Pintura", employee0);
-        employee1.Reputation = 5;
         employee1.CreateOffer(2, "Pintar la casa", 1000, "Pintura", employee1);
 
         var result = admin.GetOffersByReputation(); 
-        var expected = "Pintar la casa";
+        var expected = "Pintar la casaPintar la cucha";
         Assert.That(result, Is.EqualTo(expected));
+        admin.CancelOffer("descripcion", 1);
+        admin.CancelOffer("descripcion", 2);
     }
     
     [Test]
