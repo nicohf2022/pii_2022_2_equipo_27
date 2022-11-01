@@ -14,7 +14,7 @@ namespace Library
         /// </summary>
         /// <param name="Nickname"></param>
         /// <returns></returns>
-        private string ContactEmployee(string Nickname)
+        public string ContactEmployee(string Nickname)
         {
             Employee element;
 

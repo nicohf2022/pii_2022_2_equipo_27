@@ -21,8 +21,6 @@ namespace Library
             {
             }
         }
-
-        public Category Category { get; private set; }
         public string Description { get; private set; }
         public int Price { get; private set; }
         public int OfferID { get; private set; }
@@ -47,7 +45,6 @@ namespace Library
                 if (category1.Name == category)
                 {
                     category1.AddOffer(this);
-                    this.Category = category1;
                 }
                 else
                 {

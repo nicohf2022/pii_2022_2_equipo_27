@@ -117,22 +117,22 @@ public class Tests
         var admin = new Administrador("eladmin");
 
         string input = "algo";
-        MessageReciver.Recive(input);
+       // MessageReciver.Recive(input);
 
         input = "algo2";
-        MessageReciver.Recive(input);
+       // MessageReciver.Recive(input);
 
         input = "Calle falsa 123, Buenos Aires Ciudad, Buenos Aires, Argentina, C1425BQO";
-        MessageReciver.Recive(input);
+      //  MessageReciver.Recive(input);
 
         input = "Juan, Perez, 095101010, JuanchoPerez@gmail.com";
-        MessageReciver.Recive(input);
+       // MessageReciver.Recive(input);
 
         Address useraddress0 = new Address("Calle falsa 123", "Buenos Aires Ciudad", "Buenos Aires", "Argentina", "C1425BQO");
-        PersonalData userdata0 = new PersonalData("Juan", "Perez", "095101010", "JuanchoPerez@gmail.com", useraddress0);
-        Employee employee0 = new Employee("Juan Pinturas", userdata0, useraddress0);
+        PersonalData userdata0 = new PersonalData("Juan", "Perez");
+        ContactInfo usercontact0 = new ContactInfo("095101010", "Elpepesoya@gmail.com", useraddress0);
+        Employee employee0 = new Employee("Juan Pinturas", userdata0, usercontact0);
 
-        registereds.Register(employee0);
         employee0.CreateOffer(1, "Pintar la casa", 1000, "Pintura", employee0);
         var result = Offer.Offers[0].Description;
         var expected = "Pintar la casa";
@@ -147,27 +147,23 @@ public class Tests
         var admin = new Administrador("eladmin");
         
         string input = "algo";
-        MessageReciver.Recive(input);
+       // MessageReciver.Recive(input);
 
         input = "algo2";
-        MessageReciver.Recive(input);
+      //  MessageReciver.Recive(input);
 
         input = "Calle falsa 321, Montevideo, Pozos, Uruguay, C1425BQO";
-        MessageReciver.Recive(input);
+       // MessageReciver.Recive(input);
 
         input = "Pedro, Soan, 095123123, Pedrinho777@gmail.com";
-        MessageReciver.Recive(input);
+       // MessageReciver.Recive(input);
 
-        Address useraddress0 = new Address("Calle falsa 123", "Montevideo", "Pozos", "Uruguay", "C1425BQO");
-        PersonalData userdata0 = new PersonalData("Pedro", "Soan", "095123123", "Pedrinho777@gmail.com", useraddress0);
-        Employer employer0 = new Employer("Pedro", userdata0, useraddress0);
+        Address useraddress0 = new Address("Calle falsa 123", "Buenos Aires Ciudad", "Buenos Aires", "Argentina", "C1425BQO");
+        PersonalData userdata0 = new PersonalData("Juan", "Perez");
+        ContactInfo usercontact0 = new ContactInfo("095101010", "Elpepesoya@gmail.com", useraddress0);
+        Employee employee0 = new Employee("Juan Pinturas", userdata0, usercontact0);
 
 
-        Address useraddress1 = new Address("Calle falsa 123", "Buenos Aires", "Buenos Aires", "Argentina", "C1425BQO");
-        PersonalData userdata1 = new PersonalData("Juan", "Perez", "095101010", "JuanchoPerez@gmail.com", useraddress0);
-        Employee employee0 = new Employee("Juan Pinturas", userdata1, useraddress1);
-
-        registereds.Register(employee0);
         employee0.CreateOffer(1, "Pintar la casa", 1000, "Pintura", employee0);
 
         var result = admin.GetOffers(); // "Pintar la casa"
@@ -183,29 +179,30 @@ public class Tests
         var admin = new Administrador("eladmin");
 
         string input = "algo";
-        MessageReciver.Recive(input);
+      //  MessageReciver.Recive(input);
 
         input = "algo2";
-        MessageReciver.Recive(input);
+       // MessageReciver.Recive(input);
 
         input = "Calle falsa 321, Montevideo, Pozos, Uruguay, C1425BQO";
-        MessageReciver.Recive(input);
+       // MessageReciver.Recive(input);
 
         input = "Pedro, Soan, 095123123, Pedrinho777@gmail.com";
-        MessageReciver.Recive(input);
+      //  MessageReciver.Recive(input);
 
-        Address useraddress0 = new Address("Calle falsa 123", "Montevideo", "Pozos", "Uruguay", "C1425BQO");
-        PersonalData userdata0 = new PersonalData("Pedro", "Soan", "095123123", "Pedrinho777@gmail.com", useraddress0);
-        Employee employee0 = new Employee("Pedro", userdata0, useraddress0);
+        Address useraddress0 = new Address("Calle falsa 123", "Buenos Aires Ciudad", "Buenos Aires", "Argentina", "C1425BQO");
+        PersonalData userdata0 = new PersonalData("Juan", "Perez");
+        ContactInfo usercontact0 = new ContactInfo("095101010", "Elpepesoya@gmail.com", useraddress0);
+        Employee employee0 = new Employee("Juan Pinturas", userdata0, usercontact0);
 
 
-        Address useraddress1 = new Address("Calle falsa 123", "Buenos Aires", "Buenos Aires", "Argentina", "C1425BQO");
-        PersonalData userdata1 = new PersonalData("Juan", "Perez", "095101010", "JuanchoPerez@gmail.com", useraddress0);
-        Employee employee1 = new Employee("Juan Pinturas", userdata1, useraddress1);
+        Address useraddress1 = new Address("Calle falsa 321", "Montevideo", "Buenos Aires", "Argentina", "C1425BQO");
+        PersonalData userdata1 = new PersonalData("Pedro", "Sanchez");
+        ContactInfo usercontact1 = new ContactInfo("099012021", "goku999@gmail.com", useraddress1);
+        Employee employee1 = new Employee("Doctor nervios", userdata1, usercontact1);
 
-        registereds.Register(employee0);
-        employee0.CreateOffer(1, "Pintar la cucha", 1000, "Pintura", employee0);
-        employee1.CreateOffer(2, "Pintar la casa", 1000, "Pintura", employee1);
+        employee0.CreateOffer(1, "Pintar la cucha.", 1000, "Pintura", employee0);
+        employee1.CreateOffer(2, "Masaje descontracturante y saca nerviosidad.", 1000, "Pintura", employee1);
 
         var result = admin.GetOffersByUbication("Montevideo"); 
         var expected = "Pintar la cucha";
@@ -220,27 +217,28 @@ public class Tests
         var admin = new Administrador("eladmin");
 
         string input = "algo";
-        MessageReciver.Recive(input);
+       // MessageReciver.Recive(input);
 
         input = "algo2";
-        MessageReciver.Recive(input);
+       // MessageReciver.Recive(input);
 
         input = "Calle falsa 321, Montevideo, Pozos, Uruguay, C1425BQO";
-        MessageReciver.Recive(input);
+       // MessageReciver.Recive(input);
 
         input = "Pedro, Soan, 095123123, Pedrinho777@gmail.com";
-        MessageReciver.Recive(input);
+       // MessageReciver.Recive(input);
 
-        Address useraddress0 = new Address("Calle falsa 123", "Montevideo", "Pozos", "Uruguay", "C1425BQO");
-        PersonalData userdata0 = new PersonalData("Pedro", "Soan", "095123123", "Pedrinho777@gmail.com", useraddress0);
-        Employee employee0 = new Employee("Pedro", userdata0, useraddress0);
+        Address useraddress0 = new Address("Calle falsa 123", "Buenos Aires Ciudad", "Buenos Aires", "Argentina", "C1425BQO");
+        PersonalData userdata0 = new PersonalData("Juan", "Perez");
+        ContactInfo usercontact0 = new ContactInfo("095101010", "Elpepesoya@gmail.com", useraddress0);
+        Employee employee0 = new Employee("Juan Pinturas", userdata0, usercontact0);
 
 
-        Address useraddress1 = new Address("Calle falsa 123", "Buenos Aires", "Buenos Aires", "Argentina", "C1425BQO");
-        PersonalData userdata1 = new PersonalData("Juan", "Perez", "095101010", "JuanchoPerez@gmail.com", useraddress0);
-        Employee employee1 = new Employee("Juan Pinturas", userdata1, useraddress1);
+        Address useraddress1 = new Address("Calle falsa 321", "Montevideo", "Buenos Aires", "Argentina", "C1425BQO");
+        PersonalData userdata1 = new PersonalData("Pedro", "Sanchez");
+        ContactInfo usercontact1 = new ContactInfo("099012021", "goku999@gmail.com", useraddress1);
+        Employee employee1 = new Employee("Doctor nervios", userdata1, usercontact1);
 
-        registereds.Register(employee0);
         employee0.CreateOffer(1, "Pintar la cucha", 1000, "Pintura", employee0);
         employee1.Reputation = 5;
         employee1.CreateOffer(2, "Pintar la casa", 1000, "Pintura", employee1);
@@ -258,41 +256,41 @@ public class Tests
         var admin = new Administrador("eladmin");
 
         string input = "algo";
-        MessageReciver.Recive(input);
+        //MessageReciver.Recive(input);
 
         input = "algo2";
-        MessageReciver.Recive(input);
+        //MessageReciver.Recive(input);
 
         input = "Calle falsa 321, Montevideo, Pozos, Uruguay, C1425BQO";
-        MessageReciver.Recive(input);
+        //MessageReciver.Recive(input);
 
         input = "Pedro, Soan, 095123123, Pedrinho777@gmail.com";
-        MessageReciver.Recive(input);
+        //MessageReciver.Recive(input);
 
-        Address useraddress0 = new Address("Calle falsa 123", "Montevideo", "Pozos", "Uruguay", "C1425BQO");
-        PersonalData userdata0 = new PersonalData("Pedro", "Soan", "095123123", "Pedrinho777@gmail.com", useraddress0);
-        Employee employee0 = new Employee("Pedro", userdata0, useraddress0);
+        Address useraddress0 = new Address("Calle falsa 123", "Buenos Aires Ciudad", "Buenos Aires", "Argentina", "C1425BQO");
+        PersonalData userdata0 = new PersonalData("Juan", "Perez");
+        ContactInfo usercontact0 = new ContactInfo("095101010", "Elpepesoya@gmail.com", useraddress0);
+        Employee employee0 = new Employee("Juan Pinturas", userdata0, usercontact0);
 
         string input1 = "algo1";
-        MessageReciver.Recive(input1);
+        //MessageReciver.Recive(input1);
 
         input = "algo2";
-        MessageReciver.Recive(input1);
+        //MessageReciver.Recive(input1);
 
         input = "Calle falsa 555, Maldonado, PdE, Uruguay, 20000";
-        MessageReciver.Recive(input);
+        //MessageReciver.Recive(input);
 
         input = "Nestor, Lizboa, 091911505, Messi101@gmail.com";
-        MessageReciver.Recive(input);
+        //MessageReciver.Recive(input);
 
-        Address useraddress1 = new Address("Calle falsa 123", "Montevideo", "Pozos", "Uruguay", "C1425BQO");
-        PersonalData userdata1 = new PersonalData("Pedro", "Soan", "095123123", "Pedrinho777@gmail.com", useraddress0);
-        Employee employer0 = new Employee("Pedro", userdata1, useraddress1);
+        Address useraddress1 = new Address("Calle falsa 321", "Montevideo", "Buenos Aires", "Argentina", "C1425BQO");
+        PersonalData userdata1 = new PersonalData("Pedro", "Sanchez");
+        ContactInfo usercontact1 = new ContactInfo("099012021", "goku999@gmail.com", useraddress1);
+        Employer employer0 = new Employer("Doctor nervios", userdata1);
 
-        registereds.Register(employee0);
-        registereds.Register(employer0);
 
-        employer0.ContactEmployee(employee0, "Hola, me gustaria contratar sus servicios";
+        employer0.ContactEmployee("Juan Pinturas");
     }
 
 }
