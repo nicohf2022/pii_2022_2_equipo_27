@@ -292,5 +292,100 @@ public class Tests
 
         employer0.ContactEmployee("Juan Pinturas");
     }
+[Test]
+      /*Como trabajador,quiero poder calificar las a un empleador;el empleador ;el empleador me tiene que claificar a mi tambien ,si no me clafica en un mes ,
+     la calficacion sera neutral, para que de esa forma pueda  tener una reputacion /*/
+
+    public void Test10()
+    {
+        var categorys = new CategoryCatalog();
+        var registereds = new Registereds();
+        var admin = new Administrador("eladmin");
+
+        string input = "algo";
+        //MessageReciver.Recive(input);
+
+        input = "algo2";
+        //MessageReciver.Recive(input);
+
+        input = "Calle falsa 321, Montevideo, Pozos, Uruguay, C1425BQO";
+        //MessageReciver.Recive(input);
+
+        input = "Pedro, Soan, 095123123, pepe123@gmail.com";
+        //MessageReciver.Recive(input);
+
+        Address useraddress0 = new Address("Calle falsa 123", "Montevideo", "Pozos", "Uruguay", "C1425BQO");
+        PersonalData userdata0 = new PersonalData("Juan", "Perez");
+        ContactInfo usercontact0 = new ContactInfo("095101010", "pepe123@gmail.com", useraddress0);
+        Employer employer0 = new Employer("Juan Pinturas", userdata0);
+        Employee employee0 = new Employee("Juan Pinturas", userdata0, usercontact0);
+        
+        employer0.GetReputation();
+        employee0.GetReputation();
+
+    }
+    [Test]
+     /*Como empleador,quiero poder calificar a un trabajador;el trabajador me tiene que calificar a mi tambien ,si no me calfica en un mes ,
+    la calificacion sera neutral,para que de esa forma pueda definir la reputacion del trabajador.*/
+
+    public void Test11()
+    {
+        var categorys = new CategoryCatalog();
+        var registereds = new Registereds();
+        var admin = new Administrador("eladmin");
+
+        string input = "algo";
+        //MessageReciver.Recive(input);
+
+        input = "algo2";
+        //MessageReciver.Recive(input);
+
+        input = "Calle falsa 321, Montevideo, Pozos, Uruguay, C1425BQO";
+        //MessageReciver.Recive(input);
+
+        input = "Pedro, Soan, 095123123, pepe123@gmail.com";
+        //MessageReciver.Recive(input);
+
+        Address useraddress0 = new Address("Calle falsa 123", "Montevideo", "Pozos", "Uruguay", "C1425BQO");
+        PersonalData userdata0 = new PersonalData("Juan", "Perez");
+        ContactInfo usercontact0 = new ContactInfo("095101010", "pepe123@gmail.com", useraddress0);
+        Employee employee0 = new Employee("Juan Pinturas", userdata0, usercontact0);
+        Employer employer0 = new Employer("Juan Pinturas", userdata0);
+
+        employee0.GetReputation();
+        employer0.GetReputation();
+
+    }
+    [Test]
+        /*Como trabajador, quiero poder saber la reputación de un empleador que me
+    contacte para que de esa forma, poder decidir sobre su solicitud de contratacion*/
+    
+    public void Test12()
+    {
+        var categorys = new CategoryCatalog();
+        var registereds = new Registereds();
+        var admin = new Administrador("eladmin");
+
+        string input = "algo";
+        //MessageReciver.Recive(input);
+
+        input = "algo2";
+        //MessageReciver.Recive(input);
+
+        input = "Calle falsa 321, Montevideo, Pozos, Uruguay, C1425BQO";
+        //MessageReciver.Recive(input);
+
+        input = "Pedro, Soan, 095123123, pepe123@gmail.com";
+        //MessageReciver.Recive(input);
+
+        Address useraddress0 = new Address("Calle falsa 123", "Montevideo", "Pozos", "Uruguay", "C1425BQO");
+        PersonalData userdata0 = new PersonalData("Juan", "Perez"); 
+        ContactInfo usercontact0 = new ContactInfo("095101010", "pepe123@gmail.com" , useraddress0);
+        Employer employer0 = new Employer("Juan Pinturas", userdata0);
+        Employee employee0 = new Employee("Juan Pinturas", userdata0, usercontact0);
+
+        employee0.GetReputation();
+
+    }
 
 }
