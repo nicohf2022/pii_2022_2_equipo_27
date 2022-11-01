@@ -10,11 +10,11 @@ namespace Library
 
         public Address(string street, string city, string state, string country, string postalcode)
         {
-            Street = street;
-            City = city;
-            State = state;
-            Country = country;
-            PostalCode = postalcode;
+            this.Street = street;
+            this.City = city;
+            this.State = state;
+            this.Country = country;
+            this.PostalCode = postalcode;
         }
     }
 }

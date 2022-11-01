@@ -3,8 +3,9 @@ namespace Library
 {
     public class GenericList<T>
     {
-        //private List<T> Registereds { get; set; }
-        public static List<T> singleton
+        public static List<T> singleton;
+
+        public static List<T> Singleton
         {
             get
             {
@@ -26,6 +27,14 @@ namespace Library
         public void Remove(T item)
         {
             singleton.Remove(item);
+        }
+        public T GetByIndex(int index)
+        {
+            return singleton[index];
+        }
+        public int GetLength()
+        {
+            return singleton.Count();
         }
     }
 }

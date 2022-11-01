@@ -1,4 +1,5 @@
 using Library;
+using NUnit.Framework;
 
 namespace LibraryTests;
 
@@ -15,20 +16,16 @@ public class Tests
     /// </summary>
     public void TestAddCategory()
     {
-        string input = "algo";
-        MessageReceiver.Receive(input);
+        Administrador administrador = new Administrador("Admin1");
+        string input = "Category";
+        
+        administrador.AddCategory(input);
+        var resultList = CategoryCatalog.categories;
 
-        input = "algo2";
-        MessageReceiver.Receive(input);
+        List<Category> expectedList = new List<Category>();
+        Category category = new Category(input);
+        expectedList.Add(category);
 
-        input = "Category";
-        MessageReceiver.Receive(input);
-
-        List<string> expectedList = new List<string>();
-        expectedList.Add(input3);
-
-        Category categorias = new Category();
-        var resultList = categorias.GetOffers();
         Assert.That(resultList, Is.EqualTo(expectedList));
     }
     
@@ -40,25 +37,25 @@ public class Tests
     /// </summary>
     public void TestRemoveOffer()
     {
-        string input = "algo";
-        MessageReceiver.Receive(input);
+        Administrador administrador2 = new Administrador("Admin2");
+        administrador2.AddCategory("categoria");
 
-        input = "algo2";
-        MessageReceiver.Receive(input);
+        Address address = new Address("calle", "ciudad", "estado", "pais", "codigopostal");
+        ContactInfo contactInfo = new ContactInfo("091234567", "email", address);
+        PersonalData personalData = new PersonalData("Nombre", "Apellido");
+        Employee employee = new Employee("employee1", personalData, contactInfo);
 
-        Category categoria = new Category();
-        Offer oferta1 = new Offer(1, "descripcion", 100, categoria);
-        Offer oferta2 = new Offer(2, "descripcion", 100, categoria);
-        Offer oferta3 = new Offer(3, "descripcion", 100, categoria);
+        Offer oferta1 = new Offer(1, "descripcion", 100, "categoria", employee);
+        Offer oferta2 = new Offer(2, "descripcion", 100, "categoria", employee);
+        Offer oferta3 = new Offer(3, "descripcion", 100, "categoria", employee);
 
-        List<Offer> expectedList = Offer.GetOffers();
+        administrador2.CancelOffer("descripcion", 1);
 
-        input = "2";
-        MessageReceiver.Receive(input);
+        List<Offer> expectedList = new List<Offer>();;
+        expectedList.Add(oferta2);
+        expectedList.Add(oferta3);
 
-        expectedList.Remove(oferta2);
-
-        List<Offer> resultList = Offer.GetOffers();
+        List<Offer> resultList = Offer.Offers;
 
         Assert.That(resultList, Is.EqualTo(expectedList));
     }
@@ -72,26 +69,22 @@ public class Tests
     /// </summary>
     public void TestEmployeeRegister()
     {
-        string input = "algo";
-        MessageReceiver.Receive(input);
-
-        input = "algo2";
-        MessageReceiver.Receive(input);
-
-        input = "FrancoBascialla, Franco, Bascialla, 095349142, francobascialla@gmail.com";
-        MessageReceiver.Receive(input);
-
-        input = "Avenida avenida, Punta del Este, Maldonado, Uruguay, 20100";
-        MessageReceiver.Receive(input);
-
         Address address = new Address("Avenida avenida", "Punta del Este", "Maldonado", "Uruguay", "20100");
-        PersonalData personalData = new PersonalData("Franco", "Bascialla", "095349142", "francobascialla@gmail.com", address);
-        Employee employee = new Employee("FrancoBascialla", personalData, address);
-        string expectedNickName = employee.NickName;
+        ContactInfo contactInfo = new ContactInfo("091234567", "francobascialla@gmail.com", address);
+        PersonalData personalData = new PersonalData("Franco", "Bascialla");
+        Employee employee = new Employee("FrancoBascialla", personalData, contactInfo);
 
-        string resultNickName = Registereds.Employees.SearchByInt(0).NickName;
+        string expectedNickName = "FrancoBascialla";
+        PersonalData expectedPersonalData = personalData;
+        ContactInfo expectedInfo = contactInfo;
+
+        string resultNickName = employee.NickName;
+        PersonalData resultPersonalData = employee.PersonalData;
+        ContactInfo resultInfo = employee.ContactInfo;
 
         Assert.That(resultNickName, Is.EqualTo(expectedNickName));
+        Assert.That(resultPersonalData, Is.EqualTo(expectedPersonalData));
+        Assert.That(resultInfo, Is.EqualTo(expectedInfo));
     }
 
     [Test]
@@ -103,26 +96,17 @@ public class Tests
     /// </summary>
     public void TestEmployerRegister()
     {
-        string input = "algo";
-        MessageReceiver.Receive(input);
+        PersonalData personalData = new PersonalData("Franco", "Bascialla");
+        Employer employer = new Employer("FrancoBascialla", personalData);
 
-        input = "algo2";
-        MessageReceiver.Receive(input);
+        string expectedNickName = "FrancoBascialla";
+        PersonalData expectedPersonalData = personalData;
 
-        input = "FrancoBascialla, Franco, Bascialla, 095349142, francobascialla@gmail.com";
-        MessageReceiver.Receive(input);
-
-        input = "Avenida avenida, Punta del Este, Maldonado, Uruguay, 20100";
-        MessageReceiver.Receive(input);
-
-        Address address = new Address("Avenida avenida", "Punta del Este", "Maldonado", "Uruguay", "20100");
-        PersonalData personalData = new PersonalData("Franco", "Bascialla", "095349142", "francobascialla@gmail.com", address);
-        Employer employer = new Employer("FrancoBascialla", personalData, address);
-        string expectedNickName = employer.NickName;
-
-        string resultNickName = Registereds.Employers.SearchByInt(0).NickName;
+        string resultNickName = employer.NickName;
+        PersonalData resultPersonalData = employer.PersonalData;
 
         Assert.That(resultNickName, Is.EqualTo(expectedNickName));
+        Assert.That(resultPersonalData, Is.EqualTo(expectedPersonalData));
     }
     
     [Test]
