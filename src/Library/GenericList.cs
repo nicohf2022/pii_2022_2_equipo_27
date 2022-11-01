@@ -3,7 +3,9 @@ namespace Library
 {
     public class GenericList<T>
     {
-        public static List<T> singleton
+        public static List<T> singleton;
+
+        public static List<T> Singleton
         {
             get
             {

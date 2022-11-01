@@ -47,10 +47,11 @@ namespace Library
                 if (category1.Name == category)
                 {
                     category1.AddOffer(this);
+                    this.Category = category1;
                 }
                 else
                 {
-                    Console.WriteLine("La categoría no existe");
+                    Console.WriteLine("La categoría no existe.");
                 }
             }
             Offers.Add(this);

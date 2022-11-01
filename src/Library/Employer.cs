@@ -2,10 +2,10 @@ namespace Library
 {
     public class Employer : WorkUser
     {
-        public Employer(string nickname, PersonalData personalData, Address address)
-        : base(nickname, personalData, address)
+        public Employer(string nickname, PersonalData personalData)
+        : base(nickname, personalData)
         {
-
+            Registereds.Register(this);
         }
         
 

@@ -109,7 +109,7 @@ namespace Library
             return offertxt;
         }
 
-        private void CancelOffer(string descripcion, int offerID)
+        public void CancelOffer(string descripcion, int offerID)
         {
             foreach (Offer offer in Offer.Offers)
             {
