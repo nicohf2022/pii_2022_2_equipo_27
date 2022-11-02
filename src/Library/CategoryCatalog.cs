@@ -7,23 +7,17 @@ namespace Library
     /// </summary>
     public class CategoryCatalog
     {
+        private static List<Category> categories = new List<Category>();
+
         /// <summary>
         /// Singleton instance of the CategoryCatalog class.
         /// </summary>
         /// <value></value>
-        public static List<Category> categories
+        public static List<Category> Instance
         {
             get
             {
-                if (categories == null)
-                {
-                    categories = new List<Category>();
-                }
-
                 return categories;
-            }
-            set
-            {
             }
         }
         public CategoryCatalog()
