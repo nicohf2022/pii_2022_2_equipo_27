@@ -16,15 +16,17 @@ public class Tests
     /// </summary>
     public void TestAddCategory()
     {
-        Administrador administrador = new Administrador("Admin1");
+        var categorys = new CategoryCatalog();
+        var registereds = new Registereds();
+        var admin = new Administrador("eladmin");
+
         string input = "Category";
         
-        administrador.AddCategory(input);
-        var resultList = CategoryCatalog.categories;
+        admin.AddCategory(input);
+        var resultList = CategoryCatalog.Instance;
 
         List<Category> expectedList = new List<Category>();
-        Category category = new Category(input);
-        expectedList.Add(category);
+        expectedList.Add(new Category(input));
 
         Assert.That(resultList, Is.EqualTo(expectedList));
     }
@@ -37,8 +39,11 @@ public class Tests
     /// </summary>
     public void TestRemoveOffer()
     {
-        Administrador administrador2 = new Administrador("Admin2");
-        administrador2.AddCategory("categoria");
+        var categorys = new CategoryCatalog();
+        var registereds = new Registereds();
+        var admin = new Administrador("eladmin");
+
+        admin.AddCategory("categoria");
 
         Address address = new Address("calle", "ciudad", "estado", "pais", "codigopostal");
         ContactInfo contactInfo = new ContactInfo("091234567", "email", address);
@@ -49,15 +54,17 @@ public class Tests
         Offer oferta2 = new Offer(2, "descripcion", 100, "categoria", employee);
         Offer oferta3 = new Offer(3, "descripcion", 100, "categoria", employee);
 
-        administrador2.CancelOffer("descripcion", 1);
+        admin.CancelOffer("descripcion", 1);
 
         List<Offer> expectedList = new List<Offer>();;
         expectedList.Add(oferta2);
         expectedList.Add(oferta3);
 
-        List<Offer> resultList = Offer.Offers;
+        List<Offer> resultList = Offer.Instance;
 
         Assert.That(resultList, Is.EqualTo(expectedList));
+        admin.CancelOffer("descripcion", 2);
+        admin.CancelOffer("descripcion", 3);
     }
 
     [Test]
@@ -134,9 +141,10 @@ public class Tests
         Employee employee0 = new Employee("Juan Pinturas", userdata0, usercontact0);
 
         employee0.CreateOffer(1, "Pintar la casa", 1000, "Pintura", employee0);
-        var result = Offer.Offers[0].Description;
+        var result = Offer.Instance[0].Description;
         var expected = "Pintar la casa";
         Assert.That(result, Is.EqualTo(expected));
+        admin.CancelOffer("descripcion", 1);
     }
     
     [Test]
@@ -169,6 +177,7 @@ public class Tests
         var result = admin.GetOffers(); // "Pintar la casa"
         var expected = "Pintar la casa";
         Assert.That(result, Is.EqualTo(expected));
+        admin.CancelOffer("descripcion", 1);
     }
     
     [Test]
@@ -205,8 +214,10 @@ public class Tests
         employee1.CreateOffer(2, "Masaje descontracturante y saca nerviosidad.", 1000, "Pintura", employee1);
 
         var result = admin.GetOffersByUbication("Montevideo"); 
-        var expected = "Pintar la cucha";
+        var expected = "Masaje descontracturante y saca nerviosidad.";
         Assert.That(result, Is.EqualTo(expected));
+        admin.CancelOffer("descripcion", 1);
+        admin.CancelOffer("descripcion", 2);
     }
     
     [Test]
@@ -238,14 +249,16 @@ public class Tests
         PersonalData userdata1 = new PersonalData("Pedro", "Sanchez");
         ContactInfo usercontact1 = new ContactInfo("099012021", "goku999@gmail.com", useraddress1);
         Employee employee1 = new Employee("Doctor nervios", userdata1, usercontact1);
+        employee1.Reputation = 5;
 
         employee0.CreateOffer(1, "Pintar la cucha", 1000, "Pintura", employee0);
-        employee1.Reputation = 5;
         employee1.CreateOffer(2, "Pintar la casa", 1000, "Pintura", employee1);
 
         var result = admin.GetOffersByReputation(); 
-        var expected = "Pintar la casa";
+        var expected = "Pintar la casaPintar la cucha";
         Assert.That(result, Is.EqualTo(expected));
+        admin.CancelOffer("descripcion", 1);
+        admin.CancelOffer("descripcion", 2);
     }
     
     [Test]
@@ -291,6 +304,101 @@ public class Tests
 
 
         employer0.ContactEmployee("Juan Pinturas");
+    }
+[Test]
+      /*Como trabajador,quiero poder calificar las a un empleador;el empleador ;el empleador me tiene que claificar a mi tambien ,si no me clafica en un mes ,
+     la calficacion sera neutral, para que de esa forma pueda  tener una reputacion /*/
+
+    public void Test10()
+    {
+        var categorys = new CategoryCatalog();
+        var registereds = new Registereds();
+        var admin = new Administrador("eladmin");
+
+        string input = "algo";
+        //MessageReciver.Recive(input);
+
+        input = "algo2";
+        //MessageReciver.Recive(input);
+
+        input = "Calle falsa 321, Montevideo, Pozos, Uruguay, C1425BQO";
+        //MessageReciver.Recive(input);
+
+        input = "Pedro, Soan, 095123123, pepe123@gmail.com";
+        //MessageReciver.Recive(input);
+
+        Address useraddress0 = new Address("Calle falsa 123", "Montevideo", "Pozos", "Uruguay", "C1425BQO");
+        PersonalData userdata0 = new PersonalData("Juan", "Perez");
+        ContactInfo usercontact0 = new ContactInfo("095101010", "pepe123@gmail.com", useraddress0);
+        Employer employer0 = new Employer("Juan Pinturas", userdata0);
+        Employee employee0 = new Employee("Juan Pinturas", userdata0, usercontact0);
+        
+        employer0.GetReputation();
+        employee0.GetReputation();
+
+    }
+    [Test]
+     /*Como empleador,quiero poder calificar a un trabajador;el trabajador me tiene que calificar a mi tambien ,si no me calfica en un mes ,
+    la calificacion sera neutral,para que de esa forma pueda definir la reputacion del trabajador.*/
+
+    public void Test11()
+    {
+        var categorys = new CategoryCatalog();
+        var registereds = new Registereds();
+        var admin = new Administrador("eladmin");
+
+        string input = "algo";
+        //MessageReciver.Recive(input);
+
+        input = "algo2";
+        //MessageReciver.Recive(input);
+
+        input = "Calle falsa 321, Montevideo, Pozos, Uruguay, C1425BQO";
+        //MessageReciver.Recive(input);
+
+        input = "Pedro, Soan, 095123123, pepe123@gmail.com";
+        //MessageReciver.Recive(input);
+
+        Address useraddress0 = new Address("Calle falsa 123", "Montevideo", "Pozos", "Uruguay", "C1425BQO");
+        PersonalData userdata0 = new PersonalData("Juan", "Perez");
+        ContactInfo usercontact0 = new ContactInfo("095101010", "pepe123@gmail.com", useraddress0);
+        Employee employee0 = new Employee("Juan Pinturas", userdata0, usercontact0);
+        Employer employer0 = new Employer("Juan Pinturas", userdata0);
+
+        employee0.GetReputation();
+        employer0.GetReputation();
+
+    }
+    [Test]
+        /*Como trabajador, quiero poder saber la reputación de un empleador que me
+    contacte para que de esa forma, poder decidir sobre su solicitud de contratacion*/
+    
+    public void Test12()
+    {
+        var categorys = new CategoryCatalog();
+        var registereds = new Registereds();
+        var admin = new Administrador("eladmin");
+
+        string input = "algo";
+        //MessageReciver.Recive(input);
+
+        input = "algo2";
+        //MessageReciver.Recive(input);
+
+        input = "Calle falsa 321, Montevideo, Pozos, Uruguay, C1425BQO";
+        //MessageReciver.Recive(input);
+
+        input = "Pedro, Soan, 095123123, pepe123@gmail.com";
+        //MessageReciver.Recive(input);
+
+        Address useraddress0 = new Address("Calle falsa 123", "Montevideo", "Pozos", "Uruguay", "C1425BQO");
+        PersonalData userdata0 = new PersonalData("Juan", "Perez"); 
+        ContactInfo usercontact0 = new ContactInfo("095101010", "pepe123@gmail.com" , useraddress0);
+        Employer employer0 = new Employer("Juan Pinturas", userdata0);
+        Employee employee0 = new Employee("Juan Pinturas", userdata0, usercontact0);
+
+        employee0.GetReputation();
+
     }
 
 }

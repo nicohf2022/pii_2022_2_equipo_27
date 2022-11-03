@@ -1,40 +1,34 @@
-using System.Collections.Generic;
 namespace Library
 {
     public class GenericList<T>
     {
-        public static List<T> singleton;
-
-        public static List<T> Singleton
+        public static List<T> singleton = new List<T>();
+        public static List<T> Instance
         {
             get
             {
-                if (singleton == null)
-                {
-                    singleton = new List<T>();
-                }
-
                 return singleton;
             }
             set
             {
+                singleton = value;
             }
         }
         public void Add(T item)
         {
-            singleton.Add(item);
+            Instance.Add(item);
         }
         public void Remove(T item)
         {
-            singleton.Remove(item);
+            Instance.Remove(item);
         }
         public T GetByIndex(int index)
         {
-            return singleton[index];
+            return Instance[index];
         }
         public int GetLength()
         {
-            return singleton.Count();
+            return Instance.Count();
         }
     }
 }
