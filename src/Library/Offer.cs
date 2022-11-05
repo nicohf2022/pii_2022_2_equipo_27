@@ -2,25 +2,19 @@ namespace Library
 {
     public class Offer
     {
+        private static List<Offer> Offers = new List<Offer>();
         /// <summary>
         /// Singleton instance of the Offers class.
         /// </summary>
         /// <value></value>
-        public static List<Offer> Offers
+        public static List<Offer> Instance
         {
             get
             {
-                if (Offers == null)
-                {
-                    Offers = new List<Offer>();
-                }
-
                 return Offers;
             }
-            set
-            {
-            }
         }
+
         public string Description { get; private set; }
         public int Price { get; private set; }
         public int OfferID { get; private set; }
@@ -40,7 +34,7 @@ namespace Library
             this.Price = price;
             this.OfferOwner = employee;
             
-            foreach (Category category1 in CategoryCatalog.categories)
+            foreach (Category category1 in CategoryCatalog.Instance)
             {
                 if (category1.Name == category)
                 {
@@ -61,14 +55,14 @@ namespace Library
         /// <param name="category"></param>
         public void GetOffers()
         {
-            foreach (Offer offer in Offers)
+            foreach (Offer offer in Instance)
             {
                 Console.WriteLine(offer.Description);
             }
         }
         public void GetOffersByCategory(string category)
         {
-            foreach (Category category1 in CategoryCatalog.categories)
+            foreach (Category category1 in CategoryCatalog.Instance)
             {
                 if (category1.Name == category)
                 {
