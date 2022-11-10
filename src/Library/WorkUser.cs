@@ -8,12 +8,29 @@ namespace Library
     public class WorkUser : User
     {
         public PersonalData PersonalData { get; private set; }
-        public int Reputation { get; set; }
-
+        public int Reputation { get; set; }=3;
+        public int TimesQualified { get; set; }=1;
         public WorkUser(string nickname, PersonalData personalData)
         : base(nickname)
         {
             this.PersonalData = personalData;
         }
+    
+    public void Qualified(int reputation)
+    {
+        this.Reputation += reputation;
+        this.TimesQualified+=1;
+
+    }
+
+    public int GetReputation()
+    {
+        return (this.Reputation/this.TimesQualified);
+    }
+    
+    
+    
+    
+    
     }
 }

@@ -331,11 +331,34 @@ public class Tests
         PersonalData userdata0 = new PersonalData("Juan", "Perez");
         ContactInfo usercontact0 = new ContactInfo("095101010", "pepe123@gmail.com", useraddress0);
         Employer employer0 = new Employer("Juan Pinturas", userdata0);
-        Employee employee0 = new Employee("Juan Pinturas", userdata0, usercontact0);
-        
-        employer0.GetReputation();
-        employee0.GetReputation();
+     
 
+         string input1 = "algo";
+        //MessageReciver.Recive(input);
+
+        input = "algo2";
+        //MessageReciver.Recive(input);
+
+        input = "Calle falsa 321, Montevideo, Pozos, Uruguay, C1425BQO";
+        //MessageReciver.Recive(input);
+
+        input = "Pedro, Soan, 095123123, Pedrinho777@gmail.com";
+        //MessageReciver.Recive(input);
+
+        Address useraddress1 = new Address("Calle falsa 123", "Buenos Aires Ciudad", "Buenos Aires", "Argentina", "C1425BQO");
+        PersonalData userdata1 = new PersonalData("Juan", "Perez");
+        ContactInfo usercontact1 = new ContactInfo("095101010", "Elpepesoya@gmail.com", useraddress0);
+        Employee employee0 = new Employee("Juan Pinturas", userdata0, usercontact0);
+
+        
+        employee0.GetReputation();
+        employer0.GetReputation();
+        
+        
+       
+        Assert.That(employee0.Reputation, Is.EqualTo(3));
+        Assert.That(employer0.Reputation, Is.EqualTo(3));
+      
     }
     [Test]
      /*Como empleador,quiero poder calificar a un trabajador;el trabajador me tiene que calificar a mi tambien ,si no me calfica en un mes ,
@@ -363,10 +386,32 @@ public class Tests
         PersonalData userdata0 = new PersonalData("Juan", "Perez");
         ContactInfo usercontact0 = new ContactInfo("095101010", "pepe123@gmail.com", useraddress0);
         Employee employee0 = new Employee("Juan Pinturas", userdata0, usercontact0);
+        
+        string input1 = "algo";
+        //MessageReciver.Recive(input);
+
+        input = "algo2";
+        //MessageReciver.Recive(input);
+
+        input = "Calle falsa 321, Montevideo, Pozos, Uruguay, C1425BQO";
+        //MessageReciver.Recive(input);
+
+        input = "Pedro, Soan, 095123123, pepe123@gmail.com";
+        //MessageReciver.Recive(input);
+
+        Address useraddress1 = new Address("Calle falsa 123", "Montevideo", "Pozos", "Uruguay", "C1425BQO");
+        PersonalData userdata1 = new PersonalData("Juan", "Perez");
+        ContactInfo usercontact1 = new ContactInfo("095101010", "pepe123@gmail.com", useraddress0);
         Employer employer0 = new Employer("Juan Pinturas", userdata0);
 
         employee0.GetReputation();
         employer0.GetReputation();
+
+        Assert.That(employee0.Reputation, Is.EqualTo(3));
+        Assert.That(employer0.Reputation, Is.EqualTo(3));
+
+
+        
 
     }
     [Test]
@@ -394,10 +439,30 @@ public class Tests
         Address useraddress0 = new Address("Calle falsa 123", "Montevideo", "Pozos", "Uruguay", "C1425BQO");
         PersonalData userdata0 = new PersonalData("Juan", "Perez"); 
         ContactInfo usercontact0 = new ContactInfo("095101010", "pepe123@gmail.com" , useraddress0);
-        Employer employer0 = new Employer("Juan Pinturas", userdata0);
         Employee employee0 = new Employee("Juan Pinturas", userdata0, usercontact0);
 
+        string input1 = "algo";
+        //MessageReciver.Recive(input);
+
+        input = "algo2";
+        //MessageReciver.Recive(input);
+
+        input = "Calle falsa 321, Montevideo, Pozos, Uruguay, C1425BQO";
+        //MessageReciver.Recive(input);
+
+        input = "Pedro, Soan, 095123123, pepe123@gmail.com";
+        //MessageReciver.Recive(input);
+
+        Address useraddress1 = new Address("Calle falsa 123", "Montevideo", "Pozos", "Uruguay", "C1425BQO");
+        PersonalData userdata1 = new PersonalData("Juan", "Perez");
+        ContactInfo usercontact1 = new ContactInfo("095101010", "pepe123@gmail.com", useraddress0);
+        Employer employer0 = new Employer("Juan Pinturas", userdata0);
+
+
+
         employee0.GetReputation();
+
+       
 
     }
 
