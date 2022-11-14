@@ -14,7 +14,8 @@ public class Tests
     /// las cuales se realizarán las ofertas de servicios para que de
     /// esa forma,los trabajadoras puedan clasificarlos.
     /// </summary>
-    public void TestAddCategory()
+    
+    public void AddCategory()
     {
         var categorys = new CategoryCatalog();
         var registereds = new Registereds();
@@ -29,6 +30,7 @@ public class Tests
         expectedList.Add(new Category(input));
 
         Assert.That(resultList, Is.EqualTo(expectedList));
+        
     }
     
     [Test]
@@ -117,6 +119,11 @@ public class Tests
     }
     
     [Test]
+
+
+    /*Como trabajador, quiero poder hacer ofertas de servicios; mi oferta indicará en qué categoría quiero publicar, 
+    tendrá una descripción del servicio ofertado, y un precio para que de esa forma, 
+    mis ofertas sean ofrecidas a quienes quieren contratar servicios./*/
     public void Test4()
     {
         var categorys = new CategoryCatalog();
@@ -148,6 +155,10 @@ public class Tests
     }
     
     [Test]
+    
+    /*Como empleador, quiero buscar ofertas de trabajo, 
+    opcionalmente filtrando por categoría para que de esa forma,
+    pueda contratar un servicio./*/
     public void Test6()
     {
         var categorys = new CategoryCatalog();
@@ -181,6 +192,9 @@ public class Tests
     }
     
     [Test]
+    /*Como empleador, quiero ver el resultado de las búsquedas de ofertas de trabajo ordenado en
+    forma ascendente de distancia a mi ubicación, es decir, las más cercanas primero para que de esa forma,
+    pueda poder contratar un servicio./*/
     public void Test7()
     {
         var categorys = new CategoryCatalog();
@@ -221,6 +235,10 @@ public class Tests
     }
     
     [Test]
+   /* Como empleador, quiero ver el resultado de las búsquedas de ofertas de 
+   trabajo ordenado en forma descendente por reputación, 
+   es decir, las de mejor reputación primero para que de esa forma, pueda contratar un servicio./*/
+
     public void Test8()
     {
         var categorys = new CategoryCatalog();
@@ -262,6 +280,8 @@ public class Tests
     }
     
     [Test]
+    /*Como empleador, quiero poder contactar a un trabajador para que de esa forma pueda, 
+    contratar una oferta de servicios determinada./*/
     public void Test9()
     {
         var categorys = new CategoryCatalog();
@@ -304,6 +324,7 @@ public class Tests
 
 
         employer0.ContactEmployee("Juan Pinturas");
+        Assert.IsNotNull( employer0.ContactEmployee("Juan Pinturas"));
     }
 [Test]
       /*Como trabajador,quiero poder calificar las a un empleador;el empleador ;el empleador me tiene que claificar a mi tambien ,si no me clafica en un mes ,
@@ -315,25 +336,8 @@ public class Tests
         var registereds = new Registereds();
         var admin = new Administrador("eladmin");
 
+
         string input = "algo";
-        //MessageReciver.Recive(input);
-
-        input = "algo2";
-        //MessageReciver.Recive(input);
-
-        input = "Calle falsa 321, Montevideo, Pozos, Uruguay, C1425BQO";
-        //MessageReciver.Recive(input);
-
-        input = "Pedro, Soan, 095123123, pepe123@gmail.com";
-        //MessageReciver.Recive(input);
-
-        Address useraddress0 = new Address("Calle falsa 123", "Montevideo", "Pozos", "Uruguay", "C1425BQO");
-        PersonalData userdata0 = new PersonalData("Juan", "Perez");
-        ContactInfo usercontact0 = new ContactInfo("095101010", "pepe123@gmail.com", useraddress0);
-        Employer employer0 = new Employer("Juan Pinturas", userdata0);
-     
-
-         string input1 = "algo";
         //MessageReciver.Recive(input);
 
         input = "algo2";
@@ -347,17 +351,13 @@ public class Tests
 
         Address useraddress1 = new Address("Calle falsa 123", "Buenos Aires Ciudad", "Buenos Aires", "Argentina", "C1425BQO");
         PersonalData userdata1 = new PersonalData("Juan", "Perez");
-        ContactInfo usercontact1 = new ContactInfo("095101010", "Elpepesoya@gmail.com", useraddress0);
-        Employee employee0 = new Employee("Juan Pinturas", userdata0, usercontact0);
+        ContactInfo usercontact1 = new ContactInfo("095101010", "Elpepesoya@gmail.com", useraddress1);
+        Employee employee0 = new Employee("Juan Pinturas", userdata1, usercontact1);
 
         
-        employee0.GetReputation();
-        employer0.GetReputation();
+        employee0.Qualified(5);
         
-        
-       
-        Assert.That(employee0.Reputation, Is.EqualTo(3));
-        Assert.That(employer0.Reputation, Is.EqualTo(3));
+        Assert.That(employee0.Reputation, Is.EqualTo(4));
       
     }
     [Test]
@@ -370,24 +370,9 @@ public class Tests
         var registereds = new Registereds();
         var admin = new Administrador("eladmin");
 
-        string input = "algo";
-        //MessageReciver.Recive(input);
 
-        input = "algo2";
-        //MessageReciver.Recive(input);
-
-        input = "Calle falsa 321, Montevideo, Pozos, Uruguay, C1425BQO";
-        //MessageReciver.Recive(input);
-
-        input = "Pedro, Soan, 095123123, pepe123@gmail.com";
-        //MessageReciver.Recive(input);
-
-        Address useraddress0 = new Address("Calle falsa 123", "Montevideo", "Pozos", "Uruguay", "C1425BQO");
-        PersonalData userdata0 = new PersonalData("Juan", "Perez");
-        ContactInfo usercontact0 = new ContactInfo("095101010", "pepe123@gmail.com", useraddress0);
-        Employee employee0 = new Employee("Juan Pinturas", userdata0, usercontact0);
         
-        string input1 = "algo";
+        string input = "algo";
         //MessageReciver.Recive(input);
 
         input = "algo2";
@@ -401,14 +386,13 @@ public class Tests
 
         Address useraddress1 = new Address("Calle falsa 123", "Montevideo", "Pozos", "Uruguay", "C1425BQO");
         PersonalData userdata1 = new PersonalData("Juan", "Perez");
-        ContactInfo usercontact1 = new ContactInfo("095101010", "pepe123@gmail.com", useraddress0);
-        Employer employer0 = new Employer("Juan Pinturas", userdata0);
+        ContactInfo usercontact1 = new ContactInfo("095101010", "pepe123@gmail.com", useraddress1);
+        Employer employer0 = new Employer("Juan Pinturas", userdata1);
 
-        employee0.GetReputation();
-        employer0.GetReputation();
+        employer0.Qualified(5);
 
-        Assert.That(employee0.Reputation, Is.EqualTo(3));
-        Assert.That(employer0.Reputation, Is.EqualTo(3));
+        Assert.That(employer0.Reputation, Is.EqualTo(4));
+
 
 
         
@@ -441,28 +425,10 @@ public class Tests
         ContactInfo usercontact0 = new ContactInfo("095101010", "pepe123@gmail.com" , useraddress0);
         Employee employee0 = new Employee("Juan Pinturas", userdata0, usercontact0);
 
-        string input1 = "algo";
-        //MessageReciver.Recive(input);
-
-        input = "algo2";
-        //MessageReciver.Recive(input);
-
-        input = "Calle falsa 321, Montevideo, Pozos, Uruguay, C1425BQO";
-        //MessageReciver.Recive(input);
-
-        input = "Pedro, Soan, 095123123, pepe123@gmail.com";
-        //MessageReciver.Recive(input);
-
-        Address useraddress1 = new Address("Calle falsa 123", "Montevideo", "Pozos", "Uruguay", "C1425BQO");
-        PersonalData userdata1 = new PersonalData("Juan", "Perez");
-        ContactInfo usercontact1 = new ContactInfo("095101010", "pepe123@gmail.com", useraddress0);
-        Employer employer0 = new Employer("Juan Pinturas", userdata0);
+   
 
 
-
-        employee0.GetReputation();
-
-       
+       Assert.That(employee0.Reputation, Is.EqualTo(3));
 
     }
 

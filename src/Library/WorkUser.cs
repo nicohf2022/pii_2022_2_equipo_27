@@ -21,16 +21,9 @@ namespace Library
         this.Reputation += reputation;
         this.TimesQualified+=1;
 
+        this.Reputation = this.Reputation / this.TimesQualified;
     }
+    
 
-    public int GetReputation()
-    {
-        return (this.Reputation/this.TimesQualified);
-    }
-    
-    
-    
-    
-    
     }
 }
