@@ -5,8 +5,10 @@ namespace Library
     /// Definition of CategoryCatalog. The class who has the responsability to manage
     /// the categories of the services.
     /// </summary>
+
     public class CategoryCatalog
     {
+        /*Utilizamos el patron Singleton para que solo exista una instancia de CategoryCatalog*/
         private static List<Category> categories = new List<Category>();
 
         /// <summary>

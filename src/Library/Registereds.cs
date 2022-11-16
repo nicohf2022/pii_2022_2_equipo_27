@@ -13,14 +13,18 @@ namespace Library
         public static GenericList<Employee> Employees = new GenericList<Employee>();
         public static GenericList<Employer> Employers = new GenericList<Employer>();
 
+/*Utilizamos el principio Expert*/
         public static void Register(Employee employee)
         {
             Employees.Add(employee);
         }
+/*Agregado por Expert*/
         public static void Register(Employer employer)
         {
             Employers.Add(employer);
         }
+
+/*Agregado por Expert*/
         public static void Unsubscribe(Employee employee)
         {
             Employees.Remove(employee);
@@ -29,10 +33,13 @@ namespace Library
         {
             Employers.Remove(employer);
         }
+
+/*Agregado por Expert*/
         public static Employer GetEmployerByIndex(int index)
         {
             return Employers.GetByIndex(index);
         }
+/*Agregado por Expert*/
         public static Employee GetEmployeeByIndex(int index)
         {
             return Employees.GetByIndex(index);

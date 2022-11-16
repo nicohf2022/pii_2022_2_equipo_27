@@ -1,5 +1,6 @@
 namespace Library
 {
+/*Utilizamos User como clase base para la clase Administrador*/
     public class Administrador : User
     {
         public Administrador(string nickname)
@@ -13,6 +14,8 @@ namespace Library
         /// Adds a category to the catalog.
         /// </summary>
         /// <param name="category"></param>
+        
+        /*Agregado por el principio de responsabilidad unica*/
         public void AddCategory(string category)
         {
             CategoryCatalog.Instance.Add(new Category(category));
@@ -23,6 +26,8 @@ namespace Library
         ///  Removes a category from the catalog.
         /// </summary>
         /// <param name="category name"></param>
+        
+    /*Agregado por el principio de responsabilidad unica*/
         public void RemoveCategory(string categoryname)
         {
             int categoriesnumber = CategoryCatalog.Instance.Count;
@@ -39,7 +44,7 @@ namespace Library
                 Console.WriteLine("La categoría no existe");
             }
         }
-
+    /*Agregado por el principio de responsabilidad unica*/
         public string GetOffers()
         {
             string offers = "";
@@ -53,6 +58,7 @@ namespace Library
             }
             return offers;
         }
+    /*Agregado por el principio de responsabilidad unica*/
         public void GetOffersByCategory(string category)
         {
             foreach (Category category1 in CategoryCatalog.Instance)
@@ -71,6 +77,8 @@ namespace Library
         /// </summary>
         /// <param name="city"></param>
         /// <returns>string that containg offers description of the ubication</returns>
+       
+    /*Agregado por el principio de responsabilidad unica*/
         public string GetOffersByUbication(string city)
         {
             string offers = "";
@@ -90,6 +98,9 @@ namespace Library
         /// <summary>
         /// Metodo para ordenar de forma descendente las ofertas por reputacion
         /// </summary>
+       
+       
+    /*Agregado por el principio de responsabilidad unica*/
         public string GetOffersByReputation()
         {
             string offertxt = "";
@@ -105,7 +116,7 @@ namespace Library
             }
             return offertxt;
         }
-
+    /*Agregado por el principio de responsabilidad unica*/
         public void CancelOffer(string descripcion, int offerID)
         {
             for(int i = 0; i < Offer.Instance.Count; i++)

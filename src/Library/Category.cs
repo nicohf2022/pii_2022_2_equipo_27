@@ -2,9 +2,12 @@ namespace Library
 {
     public class Category
     {
+
         public string Name { get; private set; }
         public IList<Offer> OffersInCategory;
 
+
+      /*Agregado por patron Factory*/ 
         public Category(string name)
         {
             this.Name = name;

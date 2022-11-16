@@ -1,7 +1,11 @@
 namespace Library
 {
+
+    /*Utilizamos la clase Worker como clase base para la clase Employer*/
+
     public class Employer : WorkUser
     {
+/*Agregamos el constructor de la clase Employer utlizando composicion de la clase PersonalData */
         public Employer(string nickname, PersonalData personalData)
         : base(nickname, personalData)
         {
@@ -14,6 +18,9 @@ namespace Library
         /// </summary>
         /// <param name="Nickname"></param>
         /// <returns></returns>
+       
+       
+       /*Utilizamos el principio srp*/
         public string ContactEmployee(string Nickname)
         {
             Employee element;

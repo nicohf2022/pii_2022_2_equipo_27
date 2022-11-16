@@ -1,5 +1,9 @@
 namespace Library
+
+/*Es la clase que contiene la direccion de un usuario*/
+
 {
+
     public class Address
     {
         public string Street { get; private set; }
@@ -8,6 +12,9 @@ namespace Library
         public string Country { get; private set; }
         public string PostalCode { get; private set; }
 
+
+
+/*Constructor de la clase Address.Recibe como parametros los datos del usuario.*/
         public Address(string street, string city, string state, string country, string postalcode)
         {
             this.Street = street;

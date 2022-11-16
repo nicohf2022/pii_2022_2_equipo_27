@@ -2,7 +2,8 @@ namespace Library
 {
     public class Offer
     {
-        private static List<Offer> Offers = new List<Offer>();
+        /*Utilizamos el patron Singleton para que exista una lista unica que contenga todas las ofertas disponibles actualmente*/
+        private static List<Offer> offers = new List<Offer>();
         /// <summary>
         /// Singleton instance of the Offers class.
         /// </summary>
@@ -11,7 +12,7 @@ namespace Library
         {
             get
             {
-                return Offers;
+                return offers;
             }
         }
 
@@ -27,9 +28,12 @@ namespace Library
         /// <param name="description"></param>
         /// <param name="price"></param>
         /// <param name="category"></param>
-        public Offer(int offerID, string description, int price, string category, Employee employee)
+        
+
+        /*Agregamos el constructor de la clase Offer utilizando composicion de la clase Employee*/
+        public Offer(int offerid, string description, int price, string category, Employee employee)
         {
-            this.OfferID = offerID;
+            this.OfferID = offerid;
             this.Description = description;
             this.Price = price;
             this.OfferOwner = employee;
@@ -45,34 +49,7 @@ namespace Library
                     Console.WriteLine("La categoría no existe.");
                 }
             }
-            Offers.Add(this);
+            offers.Add(this);
         }
-        
-
-        /// <summary>
-        ///  Method to add an offer to the list of offers.
-        /// </summary>
-        /// <param name="category"></param>
-        public void GetOffers()
-        {
-            foreach (Offer offer in Instance)
-            {
-                Console.WriteLine(offer.Description);
-            }
-        }
-        public void GetOffersByCategory(string category)
-        {
-            foreach (Category category1 in CategoryCatalog.Instance)
-            {
-                if (category1.Name == category)
-                {
-                    foreach (Offer offer in category1.OffersInCategory)
-                    {
-                        Console.WriteLine(offer.Description);
-                    }
-                }
-            }
-        }
-
     }
 }

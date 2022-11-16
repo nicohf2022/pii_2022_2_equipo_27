@@ -21,6 +21,8 @@ namespace Library
         /// Devuelve un string conteniendo nro. celular y E-Mail.
         /// </summary>
         /// <returns></returns>
+        
+        /* Utilizando patron Expert*/
         public string GetContactInfo()
         {
             return $"Phone: {this.Phone} - Email: {this.Email}";
