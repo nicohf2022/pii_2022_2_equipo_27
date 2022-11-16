@@ -29,8 +29,8 @@ public class Tests
         List<Category> expectedList = new List<Category>();
         expectedList.Add(new Category(input));
 
+
         Assert.That(resultList, Is.EqualTo(expectedList));
-        
     }
     
     [Test]
@@ -148,6 +148,8 @@ public class Tests
         Employee employee0 = new Employee("Juan Pinturas", userdata0, usercontact0);
 
         employee0.CreateOffer(1, "Pintar la casa", 1000, "Pintura", employee0);
+
+
         var result = Offer.Instance[0].Description;
         var expected = "Pintar la casa";
         Assert.That(result, Is.EqualTo(expected));
@@ -186,6 +188,8 @@ public class Tests
         employee0.CreateOffer(1, "Pintar la casa", 1000, "Pintura", employee0);
 
         var result = admin.GetOffers(); // "Pintar la casa"
+        // Obtiene las ofertas de todos los empleados
+
         var expected = "Pintar la casa";
         Assert.That(result, Is.EqualTo(expected));
         admin.CancelOffer("descripcion", 1);
@@ -228,7 +232,12 @@ public class Tests
         employee1.CreateOffer(2, "Masaje descontracturante y saca nerviosidad.", 1000, "Pintura", employee1);
 
         var result = admin.GetOffersByUbication("Montevideo"); 
+        // Obtiene las ofertas por ubicacion de todos los empleados.
+
         var expected = "Masaje descontracturante y saca nerviosidad.";
+
+
+
         Assert.That(result, Is.EqualTo(expected));
         admin.CancelOffer("descripcion", 1);
         admin.CancelOffer("descripcion", 2);
@@ -274,6 +283,9 @@ public class Tests
 
         var result = admin.GetOffersByReputation(); 
         var expected = "Pintar la casaPintar la cucha";
+        // Se espera ese resultado, ya que "Pintar la casa" es la descripcion del offer 2, que tiene mayor reputacion.
+
+
         Assert.That(result, Is.EqualTo(expected));
         admin.CancelOffer("descripcion", 1);
         admin.CancelOffer("descripcion", 2);
@@ -322,8 +334,7 @@ public class Tests
         ContactInfo usercontact1 = new ContactInfo("099012021", "goku999@gmail.com", useraddress1);
         Employer employer0 = new Employer("Doctor nervios", userdata1);
 
-
-        employer0.ContactEmployee("Juan Pinturas");
+        // Verifico si el resultado del metodo ContactEmployee no es nulo, si lo es, el test debe fallar.
         Assert.IsNotNull( employer0.ContactEmployee("Juan Pinturas"));
     }
 [Test]
